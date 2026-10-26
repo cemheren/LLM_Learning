@@ -25,6 +25,11 @@ completion checklists, and a glossary.
 - `offsites/`: facilitated sessions adapted from completed weekly exercises.
 - `LEARNING_PATH.md`: the stage-by-stage learning outline.
 
+## Start here
+
+Follow [Week 0: From a prompt to generated text](weeks/00-orientation/README.md)
+for setup, a CPU-friendly GPT-2 example, and a handwritten sampling loop.
+
 ## Weekly workflow
 
 1. Copy `weeks/TEMPLATE.md` into a folder such as `weeks/01-inference-basics/README.md`.
