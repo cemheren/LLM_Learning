@@ -1,0 +1,31 @@
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Downloaded models, data, and generated artifacts
+.cache/
+models/
+data/
+outputs/
+checkpoints/
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.onnx
+
+# OS files
+.DS_Store
+Thumbs.db
