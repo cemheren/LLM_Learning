@@ -14,24 +14,16 @@ offsites.
 
 ## Learning roadmap
 
-This is a starting plan, not a fixed schedule. Each week should produce a small
-working example and a short writeup.
-
-| Week | Focus | Suggested deliverable |
-|------|-------|-----------------------|
-| 01 | Inference basics: tokenization, model loading, generation | Run a small model and inspect tokens and generation settings |
-| 02 | Autoregressive decoding | Implement a generation loop; compare greedy decoding and sampling |
-| 03 | Attention and KV caching | Compare cached and uncached decoding for correctness, latency, and memory |
-| 04 | Measuring inference | Measure prefill, time to first token, decode latency, and throughput |
-| 05 | Batching and serving | Explore batching tradeoffs and build a minimal serving example |
-| 06 | Precision and quantization | Compare memory use, speed, and output quality across supported precisions |
-| 07 | Inference optimization | Explore an optimization such as optimized attention or speculative decoding |
-| 08 | End-to-end capstone | Build a reproducible demo and package it as a team learning offsite |
+The [LLM Inference Learning Path](LEARNING_PATH.md) is the outline for this repo:
+10 stages over roughly six months at five hours per week, from a first sampling
+loop to tracing requests through DeepInfer. It includes readings, hands-on builds,
+completion checklists, and a glossary.
 
 ## Repository layout
 
 - `weeks/`: weekly notes, exercises, and experiment code.
 - `offsites/`: facilitated sessions adapted from completed weekly exercises.
+- `LEARNING_PATH.md`: the stage-by-stage learning outline.
 
 ## Weekly workflow
 
