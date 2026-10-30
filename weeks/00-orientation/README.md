@@ -156,7 +156,9 @@ the same seed. Judge success by these structural checks, not a matching sentence
 ### Verified local run
 
 Verified on Windows with Python **3.13.15**, CPU PyTorch **2.14.1+cpu**, and
-Transformers **4.57.6**. The dependency file pins those top-level releases; the
+Transformers **4.57.6**. PyYAML **6.0.3** was also verified with a prebuilt Windows
+wheel; the requirements explicitly prohibit compiling that package from source.
+The dependency file pins those releases; the
 script defaults to GPT-2 revision `607a30d783dfa663caf39e06633721c8d4cfcd7e`.
 Other operating systems and Python versions listed above are expected to work,
 but have not been tested here.
@@ -318,6 +320,7 @@ Those choices also change the context for every subsequent prediction.
 |---------|--------|
 | `python` is missing or opens the Windows Store | Install 64-bit Python 3.11-3.13 and reopen the terminal |
 | No compatible PyTorch wheel | Check your Python version and architecture; use a supported 64-bit Python |
+| `building 'yaml._yaml' extension` / Microsoft Visual C++ required | Use the PyYAML wheel recovery commands below; a compiler is not required for the supported setup |
 | `ModuleNotFoundError` | Run the requirements command with the same `.venv` Python used to run the script |
 | Download or certificate error | Check access to Hugging Face and your network's proxy/certificate configuration; do not disable TLS verification |
 | Slow first run | Wait for the weight download; later runs use the local cache |
@@ -326,6 +329,36 @@ Those choices also change the context for every subsequent prediction.
 | Strange or repetitive text | Expected for a small base model; compare temperatures and prompts |
 | Windows symlink-cache warning | Harmless for this exercise; caching still works but may use extra disk space. Administrator privileges are not required |
 | Missing `hf_xet` warning | Ordinary HTTP downloads still work; no additional package is required for this exercise |
+
+### If PyYAML asks for Microsoft C++ Build Tools
+
+This means pip selected PyYAML source code rather than a prebuilt wheel. It does
+not mean this exercise requires a compiler. An old pip, an unsupported Python
+version/architecture, or a package mirror missing compatible wheels can cause
+this; the compiler error alone does not identify which one applies.
+
+Run these commands from the repository root using the existing environment:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install --only-binary=:all: PyYAML==6.0.3
+.\.venv\Scripts\python.exe -m pip install -r weeks\00-orientation\requirements.txt
+```
+
+The requirements now pin PyYAML and require its wheel, so unsupported setups fail
+with a missing-distribution message instead of attempting a C++ build.
+If the wheel command reports no matching distribution, check:
+
+```powershell
+.\.venv\Scripts\python.exe -c "import sys, platform, struct; print(sys.version); print(platform.machine()); print(struct.calcsize('P') * 8, 'bit')"
+.\.venv\Scripts\python.exe -m pip --version
+```
+
+Use the supported 64-bit Python 3.11-3.13 environment. On Windows ARM devices,
+this walkthrough's tested configuration is **x64 Python**, not native ARM Python.
+If Python is supported but the configured index lacks the wheel, use your
+network-approved package index or the documented fallback below. Do not install
+C++ Build Tools as the first workaround.
 
 ### If PyPI's download CDN fails
 

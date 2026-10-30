@@ -52,6 +52,7 @@ Windows PowerShell:
 
 ```powershell
 python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r weeks\00-orientation\requirements.txt
 .\.venv\Scripts\python.exe -m unittest discover -s weeks\00-orientation -p "test_*.py" -v
 .\.venv\Scripts\python.exe weeks\00-orientation\week0.py
@@ -61,6 +62,7 @@ macOS/Linux:
 
 ```sh
 python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
 .venv/bin/python -m pip install -r weeks/00-orientation/requirements.txt
 .venv/bin/python -m unittest discover -s weeks/00-orientation -p "test_*.py" -v
 .venv/bin/python weeks/00-orientation/week0.py
