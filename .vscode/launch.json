@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Week 0: step through generation",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}\\weeks\\00-orientation\\week0.py",
+            "python": "${command:python.interpreterPath}",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--debug",
+                "--max-new-tokens", "15",
+                "--temperature", "0"
+            ]
+        }
+    ]
+}

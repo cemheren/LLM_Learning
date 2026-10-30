@@ -226,10 +226,25 @@ On the verified Python 3.13 run, three `n` commands from the initial pause reach
 `torch.Size([1, 8, 50257])`. Asking for `output` before executing the model line
 produces `NameError`; this is a debugger timing issue, not a failed forward pass.
 
-If you prefer VS Code, select the `.venv` Python interpreter, open `week0.py`,
-set a breakpoint on `output = model(...)` inside `generate_tokens`, and use
-**Python Debugger: Debug Python File**. Use **Step Over (F10)** and the Variables
-panel; the default arguments work without a launch configuration.
+### Visual Studio Code
+
+Open the repository folder in VS Code and install its recommended **Python**
+and **Python Debugger** extensions. On Windows, the workspace settings default
+to the repository's `.venv`; if needed, use **Python: Select Interpreter** to
+choose that environment. On macOS/Linux, select `.venv/bin/python` explicitly.
+
+Open **Run and Debug (Ctrl+Shift+D)**, select
+**Week 0: step through generation**, and press **F5**. The included Windows
+launch configuration runs 15 tokens with greedy decoding and pauses
+automatically inside `generate_tokens`; no manual breakpoint is required.
+It uses the interpreter selected by the Python extension. The provided launch
+and test paths use Windows separators; on macOS/Linux adjust those paths first.
+
+Use **Step Over (F10)** to execute one line without entering PyTorch internals,
+**Step Into (F11)** to enter your own `sample_next_token` function, and
+**Continue (F5)** to finish. Inspect locals in the Variables panel, or evaluate
+`token_ids.shape`, `output.logits.shape`, and `next_logits.shape` in the Debug
+Console after their assignments execute. **Shift+F5** stops the session.
 
 ## 5. Experiments
 
